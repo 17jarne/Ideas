@@ -27,16 +27,16 @@ class neuron:
 		self.outconnects = self.newoutconnects
 		self.newinconnects = []
 		self.newoutconnects = []
-	def sumincommings(self, incoming):						#sums up incoming signals
+	def sumincomings(self, incoming):						#sums up incoming signals
 		self.newsumincomings += incoming
 	def setweightin(self, otherneuron, newweight, oldweight):			#sets new weight to inconnect
-		self.newinconnects.add([otherneuron, newweight])
-		otherneuron.newoutconnects. add([self, oldweight])
+		self.newinconnects.append([otherneuron, newweight])
+		otherneuron.newoutconnects.append([self, oldweight])
 	def setweightout(self, otherneuron, newweight, oldweight):                      
-                self.newoutconnects.add([otherneuron, newweight])
-                otherneuron.newinconnects. add([self, oldweight])
+                self.newoutconnects.append([otherneuron, newweight])
+                otherneuron.newinconnects.append([self, oldweight])
 	def activation(self):								#manages the processes when neuron gets activated
-		if self.oldsumincomings > self.actthreshold:
+		if self.oldsumincomings >= self.actthreshold:
 			self.status = 1
 			for outconnect in self.outconnects:
 				outconnect[0].sumincomings(outconnect[1])

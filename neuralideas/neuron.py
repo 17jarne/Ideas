@@ -34,5 +34,6 @@ class neuron:
 			for inconnect in self.inconnects:
 				if inconnect[1] > 0:
 					self.setweightin(inconnect[0], math.sqrt(inconnect[1]), inconnect[1])
-
+				if inconnect[1] < 0:
+					self.setweightin(inconnect[0], math.pow(inconnect[1],2), inconnect[1])
 	

@@ -28,12 +28,12 @@ class neuralsystem:
 					return
 				if command == 'input':
 					print 'What do you let experience me?'
-					impression = ast.literal.eval( sys.argv[1] )
+					impression = ast.literal.eval( sys.argv[1] )		#take input as list containing the names of the stimulated (input) neurons
 					print impression
-			for neuron in neurons:
+			for neuron in neurons:							#make everything ready for a new round of signal processing
 				neuron.resetstatus()
 				neuron.resetsumincomings()
-			for neuron in neurons:
+			for neuron in neurons:							#signal processing
 				if neuron.name in impression:
 					neuron.sumincomings(neuron.actthreshold)
 				neuron.activate()

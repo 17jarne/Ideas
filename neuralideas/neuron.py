@@ -40,6 +40,14 @@ class neuron:
 				outconnect[0].sumincomings(outconnect[1])
 			for inconnect in self.inconnects:
 				if inconnect[1] > 0:
-					self.setweightin(inconnect[0], math.sqrt(inconnect[1]), inconnect[1])
-				if inconnect[1] < 0:
+					self.setweightin(inconnect[0], math.sqrt(inconnect[1]), inconnect[1])		#strengthen connection if it had effect
+				if inconnect[1] < 0:									#weaken it otherwise
 					self.setweightin(inconnect[0], math.pow(inconnect[1],2), inconnect[1])
+		if self.oldsumincommings < self.actthreshold:
+                        self.status = 0
+                        for inconnect in self.inconnects:
+                                if inconnect[1] < 0:
+                                        self.setweightin(inconnect[0], math.sqrt(inconnect[1]), inconnect[1])		#as above
+                                if inconnect[1] > 0:
+                                        self.setweightin(inconnect[0], math.pow(inconnect[1],2), inconnect[1])
+

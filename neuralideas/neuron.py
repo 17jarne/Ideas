@@ -12,8 +12,10 @@ class neuron:
 		self.outconnects = []	
 		self.newoutconnects = []
 		self.newsumincomings = 0
+		self.oldsumincomings = 0
 		self.status = 0								#status 0: not activated, status 1: activated
-   	def add_inconnects(self, inconnects):
+   		self.oldstatus = 0
+	def add_inconnects(self, inconnects):
         	self.inconnects.append(inconnects)
 	def add_outconnects(self, outconnects):
                 self.outconnects.append(outconnects)
@@ -21,6 +23,7 @@ class neuron:
 		self.oldsumincomings = self.newsumincomings
 		self.newsumincomings = 0
 	def resetstatus(self):
+		self.oldstatus = self.status
 		self.status = 0
 	def resetweights(self):
 		self.inconnects = self.newinconnects
@@ -41,15 +44,19 @@ class neuron:
 			for outconnect in self.outconnects:
 				outconnect[0].sumincomings(outconnect[1])
 			for inconnect in self.inconnects:
-				if inconnect[1] > 0:
+				if inconnect[1] > 0 and inconnect[0].oldstatus == 1:
 					self.setweightin(inconnect[0], math.sqrt(inconnect[1]), inconnect[1])		#strengthen connection if it had effect
-				if inconnect[1] < 0:									#weaken it otherwise
-					self.setweightin(inconnect[0], math.pow(inconnect[1],2), inconnect[1])
+				else:
+					self.setweightin(inconnect[0], inconnect[1], inconnect[1])
+				#if inconnect[1] < 0:									#weaken it otherwise
+				#	self.setweightin(inconnect[0], math.pow(inconnect[1],2), inconnect[1])
 		if self.oldsumincomings < self.actthreshold:
                         self.status = 0
-                        for inconnect in self.inconnects:
-                                if inconnect[1] < 0:
-                                        self.setweightin(inconnect[0], math.sqrt(inconnect[1]), inconnect[1])		#as above
-                                if inconnect[1] > 0:
-                                        self.setweightin(inconnect[0], math.pow(inconnect[1],2), inconnect[1])
+			for inconnect in self.inconnects:						#really bad running time
+				self.setweightin(inconnect[0], inconnect[1], inconnect[1])
+                       # for inconnect in self.inconnects:
+                        #        if inconnect[1] < 0:
+                         #               self.setweightin(inconnect[0], math.sqrt(inconnect[1]), inconnect[1])		#as above
+                          #      if inconnect[1] > 0:
+                           #             self.setweightin(inconnect[0], math.pow(inconnect[1],2), inconnect[1])
 

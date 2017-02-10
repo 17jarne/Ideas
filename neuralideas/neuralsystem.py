@@ -24,21 +24,24 @@ class neuralsystem:
 				commandtemp = 0
 				print "Is there any new input for me?"
 				command = raw_input('Command: ')
-				if command == 'die':
+				if command == 'stop':
 					return
 				if command == 'input':
 					print 'What do you let experience me?'
 					impression = raw_input().split(',')	#take input as list containing the names of the stimulated (input) neurons
 					if impression != '':
 						impression = map(int, impression)
+			print impression
 			for neuron in self.neurons:						#signal processing
 				if neuron.name in impression:
 					neuron.sumincomings(neuron.actthreshold)
 				neuron.resetsumincomings()					#pushes the newincomings to incomings
 				neuron.resetstatus()
+			for neuron in self.neurons:
 				neuron.activation()
 			for neuron in self.neurons:
                                 neuron.resetweights()
+				print neuron.status
 			impression = []
 			output = []
 			for neuron in self.outneurons:

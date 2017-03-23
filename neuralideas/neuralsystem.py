@@ -27,7 +27,7 @@ class neuralsystem:
 				if command == 'stop':
 					return
 				if command == 'input':
-					print 'What do you let experience me?'
+					print 'What do you show me?'
 					impression = raw_input().split(',')	#take input as list containing the names of the stimulated (input) neurons
 					if impression != '':
 						impression = map(int, impression)

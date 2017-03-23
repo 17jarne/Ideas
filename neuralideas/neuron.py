@@ -15,6 +15,11 @@ class neuron:
 		self.oldsumincomings = 0
 		self.status = 0								#status 0: not activated, status 1: activated
    		self.oldstatus = 0
+	def __init__(self, otherneuron):
+		if self.name == otherneuron.name and self.kind == otherneuron.kind and self.actthreshold == otherneuron.actthreshold and self.inconnects == otherneuron.inconnects and self.outconnects == otherneuron.outconnects: return true
+		else: return false
+	def changename(name):
+		self.name = name
 	def add_inconnects(self, inconnects):
         	self.inconnects.append(inconnects)
 	def add_outconnects(self, outconnects):

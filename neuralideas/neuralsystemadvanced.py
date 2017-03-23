@@ -2,6 +2,7 @@ import numpy as np
 import math
 import sys, ast
 from neuron import neuron
+from sensory_cadvanced import sensory_cadvanced
 
 class neuralsystemadvanced:
 	def __init__(self, name, sensory_c, motor_c, amygdala_c, hippocampus_c, executive_c):

@@ -4,14 +4,14 @@ import sys, ast
 import numpy as np
 
 from neuron import Neuron
-from sensory_cadvanced import sensory_c
-from hippocampus_cadvanced import hippocampus_c
-from motor_cadvanced import motor_c
-from executive_cadvanced import executive_c
-from amygdala_cadvanced import amygdala_c
+from sensory_cadvanced import SensoryC
+from hippocampus_cadvanced import HippocampusC
+from motor_cadvanced import MotorC
+from executive_cadvanced import ExecutiveC
+from amygdala_cadvanced import AmygdalaC
 
 class Brain(object):
-	def __init__(self, name, sensory_c, motor_c, amygdala_c, hippocampus_c, executive_c):
+	def __init__(self, name, sensory_c, motor_c, amygdala_c, hippocampus_c, executive_c, outneurons):
 		self.name = name
 		self.sensory_c = sensory_c
 		self.motor_c = motor_c
@@ -25,10 +25,11 @@ class Brain(object):
 		self.parts.append(hippocampus_c) 
 		self.parts.append(executive_c)
 		self.neuronstemp = []
+                self.outneurons = outneurons
 		defaultweight = 0.4
-		for part in parts:
-			self.neuronstemp.append(part.neurons)
-		self.neurons = neuronstemp
+		for part in self.parts:
+			self.neuronstemp.extend(part.neurons)
+		self.neurons = self.neuronstemp
 		#build up connections between the different parts
 		for neuron1 in sensory_c.neurons:
 			for neuron2 in hippocampus_c.neurons:
@@ -59,7 +60,7 @@ class Brain(object):
 			for neuron2 in motor_c.neurons:
 				neuron1.add_inconnects([neuron2, defaultweight])
                                 neuron2.add_outconnects([neuron1, defaultweight])
-			for neuron2 in sensor_c.neurons:
+			for neuron2 in sensory_c.neurons:
 				neuron1.add_inconnects([neuron2, defaultweight])
                                 neuron2.add_outconnects([neuron1, defaultweight])
 			for neuron2 in amygdala_c.neurons: 

@@ -1,9 +1,12 @@
 import math
+
 import numpy as np
+
+from neuron import Neuron
 
 actthreshold = 0.5
 class MotorC:
-    def __init__(self, size):
+    def __init__(self, size, outputneuron):
         preneurons = []
         defaultweight = 0.3
         #create neurons
@@ -24,7 +27,7 @@ class MotorC:
                     neuron2.add_outconnects([neuron1, defaultweight])
 
         #connect with outputneurons in the right way
-        for neuron in neurons:
+        for neuron in self.neurons:
             neuron.add_inconnects([outputneuron, defaultweight])
             outputneuron.add_outconnects([neuron, defaultweight])
 

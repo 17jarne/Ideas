@@ -1,14 +1,16 @@
-import numpy as np
 import math
 import sys, ast
-from neuron import neuron
+
+import numpy as np
+
+from neuron import Neuron
 from sensory_cadvanced import sensory_c
 from hippocampus_cadvanced import hippocampus_c
 from motor_cadvanced import motor_c
 from executive_cadvanced import executive_c
 from amygdala_cadvanced import amygdala_c
 
-class neuralsystemadvanced:
+class Brain(object):
 	def __init__(self, name, sensory_c, motor_c, amygdala_c, hippocampus_c, executive_c):
 		self.name = name
 		self.sensory_c = sensory_c

@@ -1,11 +1,15 @@
 import math
+
 import numpy as np
 
+from neuron import Neuron
+
 actthreshold = 0.5
-class amygdala_c:
+class amygdala_c(object):
+
         def __init__(self, size):
                 #create neurons
-                preneurons = [neuron(0, 'proneuron', actthreshold) for i in range(size)]
+                preneurons = [Neuron(0, 'proneuron', actthreshold) for i in range(size)]
                 i = 0
                 for neuron in preneurons:
                         neuron.changename(i)

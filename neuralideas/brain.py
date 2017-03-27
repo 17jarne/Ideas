@@ -78,8 +78,6 @@ class Brain(object):
                                 if command == 'input':
                                         print 'What do you show me?'
                                         impression = raw_input().split(',')     #take input as list containing the names of the stimulated (input) neurons
-                                        if impression != '':
-                                                impression = map(int, impression)
 					for neuron in self.neurons:
 						if neuron.name in impression:
 							neuron.sumincomings(neuron.actthreshold)

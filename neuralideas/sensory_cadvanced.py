@@ -11,12 +11,8 @@ class SensoryC:
         defaultweight = 0.3
         #create neurons
         for i in range(size):
-            tempneuron = Neuron(0, 'inputneuron', actthreshold)
+            tempneuron = Neuron('sensory' + str(i), 'inputneuron', actthreshold)
             preneurons.append(tempneuron)
-        i = 0
-        for neuron in preneurons:
-            neuron.changename(i)
-            i += 1
         self.neurons = preneurons
         self.size = size
         #connect neurons

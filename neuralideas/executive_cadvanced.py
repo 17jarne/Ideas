@@ -11,12 +11,8 @@ class ExecutiveC:
         defaultweight = 0.3
         #create neurons
         for i in range(size):
-            tempneuron = Neuron(0, 'proneuron', actthreshold)
+            tempneuron = Neuron('executive' + str(i), 'proneuron', actthreshold)
             preneurons.append(tempneuron)
-        i = 0
-        for neuron in preneurons:
-            neuron.changename(i)
-            i += 1
         self.neurons = preneurons
         self.size = size
         #connect neurons

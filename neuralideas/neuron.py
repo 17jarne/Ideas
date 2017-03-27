@@ -1,6 +1,7 @@
 import math
 import numpy as np
 
+const = 0.8
 class neuron:
 
     	def __init__(self, name, kind, actthreshold):
@@ -15,7 +16,7 @@ class neuron:
 		self.oldsumincomings = 0
 		self.status = 0								#status 0: not activated, status 1: activated
    		self.oldstatus = 0
-	def __init__(self, otherneuron):
+	def __eq__(self, otherneuron):
 		if self.name == otherneuron.name and self.kind == otherneuron.kind and self.actthreshold == otherneuron.actthreshold and self.inconnects == otherneuron.inconnects and self.outconnects == otherneuron.outconnects: return true
 		else: return false
 	def changename(name):
@@ -25,7 +26,7 @@ class neuron:
 	def add_outconnects(self, outconnects):
                 self.outconnects.append(outconnects)
 	def resetsumincomings(self):
-		self.oldsumincomings = self.newsumincomings
+		self.oldsumincomings = self.oldsumincomings *const + self.newsumincomings
 		self.newsumincomings = 0
 	def resetstatus(self):
 		self.oldstatus = self.status

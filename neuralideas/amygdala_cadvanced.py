@@ -1,6 +1,7 @@
 import math
 import numpy as np
 
+actthreshold = 0.5
 class amygdala_c:
         def __init__(self, size):
                 #create neurons
@@ -8,7 +9,7 @@ class amygdala_c:
                 i = 0
                 for neuron in preneurons:
                         neuron.changename(i)
-                        i++
+                        i += 1
                 self.neurons = preneurons
                 self.size = size
                 #connect neurons

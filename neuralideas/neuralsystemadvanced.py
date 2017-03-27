@@ -82,7 +82,6 @@ class neuralsystemadvanced:
 							neuron.sumincomings(neuron.actthreshold)
                         for neuron in self.neurons:                                             #signal processing
                                 neuron.resetsumincomings()                                      #pushes the newincomings to incomings
-                                neuron.resetstatus()
                         for neuron in self.neurons:
                                 neuron.activation()
                         for neuron in self.neurons:

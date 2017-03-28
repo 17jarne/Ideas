@@ -54,14 +54,14 @@ class Neuron(object):
         self.newoutconnects.append([otherneuron, newweight])
         otherneuron.newinconnects.append([self, oldweight])
 
-    def activation(self):								#manages the processes when neuron gets activated
+    def activation(self, situimportance):								#manages the processes when neuron gets ac                                                                                                         tivated
         if self.oldsumincomings >= self.actthreshold:
             self.status = 1
             for outconnect in self.outconnects:
                 outconnect[0].sumincomings(outconnect[1])
             for inconnect in self.inconnects:
                 if inconnect[1] > 0 and inconnect[0].oldstatus == 1:
-                    self.setweightin(inconnect[0], math.sqrt(inconnect[1]), inconnect[1])		#strengthen connection if it had effect
+                    self.setweightin(inconnect[0], math.pow(inconnect[1], math.pow(1/2, situimportance)), inconnect[1])		#strengthen connection if it had effect
                 else:
                     self.setweightin(inconnect[0], inconnect[1], inconnect[1])
                 #if inconnect[1] < 0:									#weaken it otherwise

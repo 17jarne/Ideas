@@ -15,7 +15,7 @@ if __name__ == '__main__':
     sensory_c = SensoryC(2)
     hippocampus_c = HippocampusC(3)
     executive_c = ExecutiveC(2)
-    amygdala_c = AmygdalaC(2)
+    amygdala_c = AmygdalaC(1,1)
     out = Neuron(0, 'outneuron', actthreshold)
     motor_c = MotorC(1, out)
     brain = Brain('network1', sensory_c, motor_c, hippocampus_c, amygdala_c, executive_c, [out])
